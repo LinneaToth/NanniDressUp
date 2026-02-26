@@ -3,8 +3,9 @@ import { useFonts } from "@expo-google-fonts/hachi-maru-pop/useFonts";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Tabs } from "expo-router";
 
-export default function TabLayout() {
+//read this: https://docs.expo.dev/router/advanced/custom-tabs/
 
+export default function TabLayout() {
   let [fontsLoaded] = useFonts({
     HachiMaruPop_400Regular,
   });
@@ -17,6 +18,7 @@ export default function TabLayout() {
     return (
       <Tabs
         screenOptions={{
+          tabBarShowLabel: false,
           tabBarActiveTintColor: "#FFF",
           headerStyle: {
             backgroundColor: "#6a4c93",
@@ -25,12 +27,13 @@ export default function TabLayout() {
           headerTintColor: "#fff",
           tabBarStyle: {
             backgroundColor: "#6a4c93",
+            height: 100,
           },
         }}>
         <Tabs.Screen
           name="index"
           options={{
-            title: "Nanni Dress Up",
+            title: "DressUp",
             headerShown: true,
             headerStyle: {
               backgroundColor: "#6A4C93",
@@ -46,22 +49,30 @@ export default function TabLayout() {
               <Ionicons
                 name={focused ? "home-sharp" : "home-outline"}
                 color={color}
-                size={24}
+                size={50}
               />
             ),
           }}
         />
         <Tabs.Screen
-          name="about"
+          name="gallery"
           options={{
-            title: "About",
+            title: "Gallery",
+            headerStyle: {
+              backgroundColor: "#6A4C93",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              alignSelf: "center",
+              textAlign: "center",
+              fontFamily: "HachiMaruPop_400Regular",
+              fontSize: fontSize,
+            },
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={
-                  focused ? "information-circle" : "information-circle-outline"
-                }
+                name={focused ? "book-sharp" : "book-outline"}
                 color={color}
-                size={24}
+                size={50}
               />
             ),
           }}

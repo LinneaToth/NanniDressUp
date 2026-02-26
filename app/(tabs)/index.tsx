@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Button from "../components/Button";
-import ImageVieWer from "../components/ImageViewer";
+import ImageVieWer from "../features/doll/ImageViewer";
 
 const placeholderImage = require("@/assets/images/nanni_bg.png");
 
@@ -47,23 +47,24 @@ export default function Index() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    gap: 25,
+    backgroundColor: "#2D203F",
+    alignItems: "center",
+    paddingTop: 25,
+  },
+  imageContainer: {
+    flex: 1,
+  },
+  footerContainer: {
+    flex: 1 / 3,
+    alignItems: "center",
+  },
   dressupButtons: {
     borderColor: "red",
     flexDirection: "row",
     gap: 10,
     flex: 1 / 3,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#2D203F",
-    alignItems: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 45,
-  },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
   },
 });
