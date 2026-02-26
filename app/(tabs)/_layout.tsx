@@ -1,35 +1,72 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { HachiMaruPop_400Regular } from "@expo-google-fonts/hachi-maru-pop/400Regular";
+import { useFonts } from "@expo-google-fonts/hachi-maru-pop/useFonts";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from "expo-router";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+  let [fontsLoaded] = useFonts({
+    HachiMaruPop_400Regular,
+  });
+
+  let fontSize = 28;
+
+  if (!fontsLoaded) {
+    return null;
+  } else {
+    return (
+      <Tabs
+        screenOptions={{
+          tabBarActiveTintColor: "#FFF",
+          headerStyle: {
+            backgroundColor: "#6a4c93",
+          },
+          headerShadowVisible: false,
+          headerTintColor: "#fff",
+          tabBarStyle: {
+            backgroundColor: "#6a4c93",
+          },
+        }}>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Nanni Dress Up",
+            headerShown: true,
+            headerStyle: {
+              backgroundColor: "#6A4C93",
+            },
+            headerTitleAlign: "center",
+            headerTitleStyle: {
+              alignSelf: "center",
+              textAlign: "center",
+              fontFamily: "HachiMaruPop_400Regular",
+              fontSize: fontSize,
+            },
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={focused ? "home-sharp" : "home-outline"}
+                color={color}
+                size={24}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="about"
+          options={{
+            title: "About",
+            tabBarIcon: ({ color, focused }) => (
+              <Ionicons
+                name={
+                  focused ? "information-circle" : "information-circle-outline"
+                }
+                color={color}
+                size={24}
+              />
+            ),
+          }}
+        />
+      </Tabs>
+    );
+  }
 }
