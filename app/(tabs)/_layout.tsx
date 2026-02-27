@@ -1,9 +1,8 @@
 import { HachiMaruPop_400Regular } from "@expo-google-fonts/hachi-maru-pop/400Regular";
 import { useFonts } from "@expo-google-fonts/hachi-maru-pop/useFonts";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Tabs } from "expo-router";
-
-//read this: https://docs.expo.dev/router/advanced/custom-tabs/
 
 export default function TabLayout() {
   let [fontsLoaded] = useFonts({
@@ -28,6 +27,15 @@ export default function TabLayout() {
           tabBarStyle: {
             backgroundColor: "#6a4c93",
             height: 100,
+            paddingTop: 10,
+          },
+          tabBarItemStyle: {
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          tabBarIconStyle: {
+            height: 50,
+            width: 50,
           },
         }}>
         <Tabs.Screen
@@ -46,10 +54,10 @@ export default function TabLayout() {
               fontSize: fontSize,
             },
             tabBarIcon: ({ color, focused }) => (
-              <Ionicons
-                name={focused ? "home-sharp" : "home-outline"}
-                color={color}
+              <MaterialCommunityIcons
+                name={focused ? "dresser" : "dresser-outline"}
                 size={50}
+                color={color}
               />
             ),
           }}

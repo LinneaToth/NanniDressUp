@@ -12,7 +12,7 @@ export default function ImageVieWer({ imgSource }: Props) {
 const styles = StyleSheet.create({
   image: {
     width: 375,
-    height: 550,
+    height: 525,
     resizeMode: "cover",
     borderRadius: 18,
     shadowColor: "#171717",

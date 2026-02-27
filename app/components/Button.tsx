@@ -8,6 +8,7 @@ type Props = {
   onPress?: () => void;
   icon?: keyof typeof MaterialCommunityIcons.glyphMap;
   color?: string;
+  theme?: string;
 };
 
 export default function Button({
@@ -41,14 +42,14 @@ const styles = StyleSheet.create({
   button: {
     padding: 15,
     backgroundColor: "#ff595e",
-    borderRadius: 50,
-
+    borderRadius: 40,
+    width: 80,
+    height: 80,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
   },
   buttonLabel: {
     color: "#fff",
-    fontSize: 16,
   },
 });

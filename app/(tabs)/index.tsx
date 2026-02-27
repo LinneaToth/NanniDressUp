@@ -1,45 +1,52 @@
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Button from "../components/Button";
+import CharacterSelection from "../features/doll/CharacterSelection";
 import ImageVieWer from "../features/doll/ImageViewer";
 
 const placeholderImage = require("@/assets/images/nanni_bg.png");
 
 export default function Index() {
   const [imgChosen, setImgChosen] = useState(false);
+  const [imageSelectionOpen, setImageSelectionOpen] = useState(false);
   const [imgUrl, setImgUrl] = useState(placeholderImage);
+
+  const chooseCharacterBtnHandler = () => {
+    setImageSelectionOpen(true);
+  };
+
+  const imgChosenBtnHandler = () => {
+    setImgChosen(true);
+  };
+
+  const onModalClose = () => {
+    setImageSelectionOpen(false);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageVieWer imgSource={imgUrl} />
       </View>
+
+      {imageSelectionOpen && <CharacterSelection onClose={onModalClose} />}
+
       {!imgChosen && (
-        <View style={styles.footerContainer}>
+        <View style={styles.dressupButtons}>
+          <Button icon="feature-search" onPress={chooseCharacterBtnHandler} />
           <Button
-            label="Choose another character"
-            onPress={() =>
-              alert(
-                "Patience please! You will get to choose in due time. Geez.",
-              )
-            }
-          />
-          <Button
-            label="Start customizing!"
-            onPress={() => setImgChosen(true)}
+            icon="check-bold"
+            color="#8AC926"
+            onPress={imgChosenBtnHandler}
           />
         </View>
       )}
 
       {imgChosen && (
         <View style={styles.dressupButtons}>
-          <Button
-            icon="restore"
-            onPress={() => setImgChosen(false)}
-            color="#8AC926"
-          />
-          <Button icon="tshirt-crew-outline" />
-          <Button icon="camera" color="#1982C4" />
+          <Button icon="restore" onPress={() => setImgChosen(false)} />
+          <Button icon="tshirt-crew" color="#8AC926" />
+          <Button icon="camera-outline" color="#1982C4" />
         </View>
       )}
     </View>
