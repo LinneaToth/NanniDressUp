@@ -1,27 +1,20 @@
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Button from "../components/Button";
 import CharacterSelection from "../features/doll/CharacterSelection";
 import ImageVieWer from "../features/doll/ImageViewer";
-
-const placeholderImage = require("@/assets/images/nanni_bg.png");
+import Wardrobe from "../features/wardrobe/Wardrobe";
+import { useSessionReducer } from "../hooks/sessionReducer";
 
 export default function Index() {
-  const [imgChosen, setImgChosen] = useState(false);
-  const [imageSelectionOpen, setImageSelectionOpen] = useState(false);
-  const [imgUrl, setImgUrl] = useState(placeholderImage);
-
-  const chooseCharacterBtnHandler = () => {
-    setImageSelectionOpen(true);
-  };
-
-  const imgChosenBtnHandler = () => {
-    setImgChosen(true);
-  };
-
-  const onModalClose = () => {
-    setImageSelectionOpen(false);
-  };
+  const {
+    wardrobeModalShown,
+    characterModalShown,
+    toggleCharacterModal,
+    toggleWardrobeModal,
+    chosenImg,
+    setImg,
+    imgUrl,
+  } = useSessionReducer();
 
   return (
     <View style={styles.container}>
@@ -29,23 +22,30 @@ export default function Index() {
         <ImageVieWer imgSource={imgUrl} />
       </View>
 
-      {imageSelectionOpen && <CharacterSelection onClose={onModalClose} />}
+      {characterModalShown && (
+        <CharacterSelection onClose={toggleCharacterModal} />
+      )}
+      {wardrobeModalShown && <Wardrobe onClose={toggleWardrobeModal} />}
 
-      {!imgChosen && (
+      {!chosenImg && (
         <View style={styles.dressupButtons}>
-          <Button icon="feature-search" onPress={chooseCharacterBtnHandler} />
+          <Button icon="feature-search" onPress={toggleCharacterModal} />
           <Button
             icon="check-bold"
             color="#8AC926"
-            onPress={imgChosenBtnHandler}
+            onPress={() => setImg(imgUrl)}
           />
         </View>
       )}
 
-      {imgChosen && (
+      {chosenImg && (
         <View style={styles.dressupButtons}>
-          <Button icon="restore" onPress={() => setImgChosen(false)} />
-          <Button icon="tshirt-crew" color="#8AC926" />
+          <Button icon="restore" onPress={() => setImg(null)} />
+          <Button
+            icon="tshirt-crew"
+            color="#8AC926"
+            onPress={toggleWardrobeModal}
+          />
           <Button icon="camera-outline" color="#1982C4" />
         </View>
       )}
