@@ -1,6 +1,6 @@
 //MODAL with clothes and accessory for overlay on doll img
 
-import NanniModal from "@/app/components/NanniModal";
+import NanniModal from "@/components/NanniModal";
 import { Text } from "react-native";
 
 type Props = {

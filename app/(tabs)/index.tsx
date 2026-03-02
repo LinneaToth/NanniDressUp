@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import Button from "../components/Button";
-import CharacterSelection from "../features/doll/CharacterSelection";
-import ImageVieWer from "../features/doll/ImageViewer";
-import Wardrobe from "../features/wardrobe/Wardrobe";
-import { useSessionReducer } from "../hooks/sessionReducer";
+import Button from "../../components/Button";
+import CharacterSelection from "../../features/doll/CharacterSelection";
+import ImageVieWer from "../../features/doll/ImageViewer";
+import Wardrobe from "../../features/wardrobe/Wardrobe";
+import { useSessionReducer } from "../../hooks/sessionReducer";
 
 export default function Index() {
   const {
